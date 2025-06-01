@@ -31,7 +31,7 @@ const LoginForm = () => {
     if (!success) {
       toast({
         title: "Credenciais inválidas",
-        description: "A senha deve ser: acesso0123",
+        description: "Email ou senha incorretos.",
         variant: "destructive"
       });
     } else {
