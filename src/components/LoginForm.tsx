@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -6,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
-import { Eye, EyeOff, Play } from 'lucide-react';
+import { Eye, EyeOff, DollarSign } from 'lucide-react';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -50,7 +49,7 @@ const LoginForm = () => {
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 bg-netflix-red rounded-lg flex items-center justify-center">
-              <Play className="w-6 h-6 text-white fill-current" />
+              <DollarSign className="w-6 h-6 text-white" />
             </div>
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#3D0471] to-[#F8F9FA] bg-clip-text text-transparent">
               CashFlow Mastery
