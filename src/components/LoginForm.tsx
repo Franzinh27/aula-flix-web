@@ -55,7 +55,7 @@ const LoginForm = () => {
               CashFlow Mastery
             </CardTitle>
           </div>
-          <CardDescription className="text-netflix-light-gray">
+          <CardDescription className="text-black">
             Acesse sua área de membros para continuar aprendendo
           </CardDescription>
         </CardHeader>
@@ -63,7 +63,7 @@ const LoginForm = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium">
+              <Label htmlFor="email" className="text-sm font-medium text-black">
                 Email
               </Label>
               <Input
@@ -78,7 +78,7 @@ const LoginForm = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium">
+              <Label htmlFor="password" className="text-sm font-medium text-black">
                 Senha
               </Label>
               <div className="relative">
