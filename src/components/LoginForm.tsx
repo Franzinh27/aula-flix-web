@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -48,8 +49,8 @@ const LoginForm = () => {
       <Card className="w-full max-w-md glass-effect border-0 animate-scale-in relative z-10">
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
-            <div className="w-10 h-10 bg-netflix-red rounded-lg flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#F8F9FA' }}>
+              <DollarSign className="w-6 h-6" style={{ color: '#2FBE55' }} />
             </div>
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#3D0471] to-[#F8F9FA] bg-clip-text text-transparent">
               CashFlow Mastery
