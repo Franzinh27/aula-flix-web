@@ -37,7 +37,7 @@ const LoginForm = () => {
     } else {
       toast({
         title: "Login realizado com sucesso!",
-        description: "Bem-vindo ao AulaFlix!",
+        description: "Bem-vindo ao CashFlow Mastery!",
       });
     }
   };
@@ -52,8 +52,8 @@ const LoginForm = () => {
             <div className="w-10 h-10 bg-netflix-red rounded-lg flex items-center justify-center">
               <Play className="w-6 h-6 text-white fill-current" />
             </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-netflix-red to-white bg-clip-text text-transparent">
-              AulaFlix
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#3D0471] to-[#F8F9FA] bg-clip-text text-transparent">
+              CashFlow Mastery
             </CardTitle>
           </div>
           <CardDescription className="text-netflix-light-gray">
