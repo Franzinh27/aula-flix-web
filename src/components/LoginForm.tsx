@@ -49,7 +49,7 @@ const LoginForm = () => {
       <Card className="w-full max-w-md border-0 animate-scale-in relative z-10" style={{ backgroundColor: '#FFC000' }}>
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#F8F9FA' }}>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
               <DollarSign className="w-6 h-6 animate-bounce z-10" style={{ color: '#2FBE55' }} />
               
               {/* Floating dollar signs animation */}
