@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -49,14 +50,14 @@ const LoginForm = () => {
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#F8F9FA' }}>
-              <DollarSign className="w-6 h-6 animate-bounce z-10" style={{ color: '#000000' }} />
+              <DollarSign className="w-6 h-6 animate-bounce z-10" style={{ color: '#2FBE55' }} />
               
               {/* Floating dollar signs animation */}
               <div className="absolute inset-0 pointer-events-none">
                 <DollarSign 
                   className="w-3 h-3 absolute animate-float-1 opacity-60" 
                   style={{ 
-                    color: '#000000',
+                    color: '#2FBE55',
                     left: '10%',
                     animationDelay: '0s'
                   }} 
@@ -64,7 +65,7 @@ const LoginForm = () => {
                 <DollarSign 
                   className="w-2 h-2 absolute animate-float-2 opacity-40" 
                   style={{ 
-                    color: '#000000',
+                    color: '#2FBE55',
                     right: '15%',
                     animationDelay: '0.5s'
                   }} 
@@ -72,14 +73,14 @@ const LoginForm = () => {
                 <DollarSign 
                   className="w-2.5 h-2.5 absolute animate-float-3 opacity-50" 
                   style={{ 
-                    color: '#000000',
+                    color: '#2FBE55',
                     left: '60%',
                     animationDelay: '1s'
                   }} 
                 />
               </div>
             </div>
-            <CardTitle className="text-3xl font-bold text-black">
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
               CashFlow Mastery
             </CardTitle>
           </div>
@@ -140,7 +141,7 @@ const LoginForm = () => {
         </CardContent>
       </Card>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float-1 {
           0% {
             transform: translateY(40px) translateX(0px);
