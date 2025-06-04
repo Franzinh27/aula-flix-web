@@ -1,5 +1,4 @@
 
-
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -81,7 +80,7 @@ const LoginForm = () => {
                 />
               </div>
             </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#3D0471] to-black bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
               CashFlow Mastery
             </CardTitle>
           </div>
@@ -142,7 +141,7 @@ const LoginForm = () => {
         </CardContent>
       </Card>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float-1 {
           0% {
             transform: translateY(40px) translateX(0px);
@@ -202,4 +201,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
