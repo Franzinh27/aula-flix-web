@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -108,7 +107,7 @@ const LoginForm = () => {
     <div className="min-h-screen flex items-center justify-center p-4 relative">
       <MatrixBackground />
       
-      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10" style={{ backgroundColor: '#FFC000' }}>
+      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10" style={{ backgroundColor: '#2FBE55' }}>
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
