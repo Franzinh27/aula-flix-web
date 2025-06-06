@@ -81,47 +81,79 @@ const LoginForm = () => {
     setTimeout(() => setIsExploding(false), 2000);
   };
 
-  const playSuccessSound = () => {
+  const playCashRegisterSound = () => {
     // Create AudioContext
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    // Create a more modern "success" sound with multiple tones
-    const playTone = (frequency: number, duration: number, delay: number, type: OscillatorType = 'sine') => {
+    // Classic cash register "cha-ching" sound
+    const playChaChing = () => {
+      // First "cha" sound - bell-like
+      const oscillator1 = audioContext.createOscillator();
+      const gainNode1 = audioContext.createGain();
+      
+      oscillator1.connect(gainNode1);
+      gainNode1.connect(audioContext.destination);
+      
+      oscillator1.type = 'sine';
+      oscillator1.frequency.setValueAtTime(1800, audioContext.currentTime);
+      oscillator1.frequency.exponentialRampToValueAtTime(1600, audioContext.currentTime + 0.1);
+      
+      gainNode1.gain.setValueAtTime(0, audioContext.currentTime);
+      gainNode1.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01);
+      gainNode1.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
+      
+      oscillator1.start(audioContext.currentTime);
+      oscillator1.stop(audioContext.currentTime + 0.15);
+
+      // Second "ching" sound - higher pitched
       setTimeout(() => {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
+        const oscillator2 = audioContext.createOscillator();
+        const gainNode2 = audioContext.createGain();
         
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        oscillator2.connect(gainNode2);
+        gainNode2.connect(audioContext.destination);
         
-        oscillator.type = type;
-        oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+        oscillator2.type = 'sine';
+        oscillator2.frequency.setValueAtTime(2400, audioContext.currentTime);
+        oscillator2.frequency.exponentialRampToValueAtTime(2000, audioContext.currentTime + 0.2);
         
-        // Volume envelope for smooth sound
-        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+        gainNode2.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode2.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+        gainNode2.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.25);
         
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + duration);
-      }, delay);
+        oscillator2.start(audioContext.currentTime);
+        oscillator2.stop(audioContext.currentTime + 0.25);
+      }, 120);
+
+      // Add metallic resonance
+      setTimeout(() => {
+        const oscillator3 = audioContext.createOscillator();
+        const gainNode3 = audioContext.createGain();
+        
+        oscillator3.connect(gainNode3);
+        gainNode3.connect(audioContext.destination);
+        
+        oscillator3.type = 'triangle';
+        oscillator3.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator3.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.3);
+        
+        gainNode3.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode3.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.02);
+        gainNode3.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.4);
+        
+        oscillator3.start(audioContext.currentTime);
+        oscillator3.stop(audioContext.currentTime + 0.4);
+      }, 200);
     };
 
-    // Play ascending melody (like a level up or success sound)
-    playTone(523.25, 0.15, 0);     // C5
-    playTone(659.25, 0.15, 100);   // E5
-    playTone(783.99, 0.15, 200);   // G5
-    playTone(1046.50, 0.3, 300);   // C6
-    
-    // Add some harmonic richness
-    playTone(261.63, 0.4, 300, 'triangle'); // C4 (lower octave)
+    playChaChing();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     createExplosion();
-    playSuccessSound();
+    playCashRegisterSound();
     
     if (!email) {
       toast({
