@@ -74,10 +74,18 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
   const { login, isLoading } = useAuth();
+
+  const createExplosion = () => {
+    setIsExploding(true);
+    setTimeout(() => setIsExploding(false), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    createExplosion();
     
     if (!email) {
       toast({
@@ -108,7 +116,25 @@ const LoginForm = () => {
     <div className="min-h-screen flex items-center justify-center p-4 relative">
       <MatrixBackground />
       
-      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10" style={{ backgroundColor: '#FFC000' }}>
+      {/* Explosion Animation */}
+      {isExploding && (
+        <div className="fixed inset-0 pointer-events-none z-20">
+          {[...Array(20)].map((_, i) => (
+            <DollarSign
+              key={i}
+              className="absolute w-8 h-8 text-green-500 animate-explosion"
+              style={{
+                left: `${50 + (Math.random() - 0.5) * 20}%`,
+                top: `${50 + (Math.random() - 0.5) * 20}%`,
+                animationDelay: `${Math.random() * 0.5}s`,
+                animationDuration: '2s'
+              }}
+            />
+          ))}
+        </div>
+      )}
+      
+      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-white">
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
@@ -194,7 +220,8 @@ const LoginForm = () => {
             
             <Button
               type="submit"
-              className="w-full h-12 netflix-red-gradient hover:scale-105 transition-transform font-semibold"
+              className="w-full h-12 hover:scale-105 transition-transform font-semibold text-white"
+              style={{ backgroundColor: '#2FBE55' }}
               disabled={isLoading}
             >
               {isLoading ? "Entrando..." : "Entrar"}
@@ -246,6 +273,21 @@ const LoginForm = () => {
           }
         }
 
+        @keyframes explosion {
+          0% {
+            transform: translate(0, 0) scale(0) rotate(0deg);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(calc(var(--random-x, 0) * 200px), calc(var(--random-y, 0) * 200px)) scale(1.5) rotate(180deg);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translate(calc(var(--random-x, 0) * 400px), calc(var(--random-y, 0) * 400px)) scale(0) rotate(360deg);
+            opacity: 0;
+          }
+        }
+
         .animate-float-1 {
           animation: float-1 2s ease-in-out infinite;
         }
@@ -256,6 +298,12 @@ const LoginForm = () => {
 
         .animate-float-3 {
           animation: float-3 3s ease-in-out infinite;
+        }
+
+        .animate-explosion {
+          animation: explosion 2s ease-out forwards;
+          --random-x: ${Math.random() - 0.5};
+          --random-y: ${Math.random() - 0.5};
         }
       `}</style>
     </div>
