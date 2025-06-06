@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -81,79 +82,136 @@ const LoginForm = () => {
     setTimeout(() => setIsExploding(false), 2000);
   };
 
-  const playCashRegisterSound = () => {
+  const playCashFlowMoneySound = () => {
     // Create AudioContext
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    // Classic cash register "cha-ching" sound
-    const playChaChing = () => {
-      // First "cha" sound - bell-like
-      const oscillator1 = audioContext.createOscillator();
-      const gainNode1 = audioContext.createGain();
-      
-      oscillator1.connect(gainNode1);
-      gainNode1.connect(audioContext.destination);
-      
-      oscillator1.type = 'sine';
-      oscillator1.frequency.setValueAtTime(1800, audioContext.currentTime);
-      oscillator1.frequency.exponentialRampToValueAtTime(1600, audioContext.currentTime + 0.1);
-      
-      gainNode1.gain.setValueAtTime(0, audioContext.currentTime);
-      gainNode1.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01);
-      gainNode1.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
-      
-      oscillator1.start(audioContext.currentTime);
-      oscillator1.stop(audioContext.currentTime + 0.15);
+    // CashFlow-inspired money sound with multiple coin drops and cash register
+    const playMoneySound = () => {
+      // Main cash register sound
+      const createCashRegister = (delay: number) => {
+        setTimeout(() => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.3);
+          
+          gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+          gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.02);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.4);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.4);
+        }, delay);
+      };
 
-      // Second "ching" sound - higher pitched
-      setTimeout(() => {
-        const oscillator2 = audioContext.createOscillator();
-        const gainNode2 = audioContext.createGain();
-        
-        oscillator2.connect(gainNode2);
-        gainNode2.connect(audioContext.destination);
-        
-        oscillator2.type = 'sine';
-        oscillator2.frequency.setValueAtTime(2400, audioContext.currentTime);
-        oscillator2.frequency.exponentialRampToValueAtTime(2000, audioContext.currentTime + 0.2);
-        
-        gainNode2.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode2.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
-        gainNode2.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.25);
-        
-        oscillator2.start(audioContext.currentTime);
-        oscillator2.stop(audioContext.currentTime + 0.25);
-      }, 120);
+      // Multiple coin drops simulation
+      const createCoinDrop = (frequency: number, delay: number) => {
+        setTimeout(() => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.type = 'triangle';
+          oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.5, audioContext.currentTime + 0.15);
+          
+          gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+          gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.01);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.2);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.2);
+        }, delay);
+      };
 
-      // Add metallic resonance
-      setTimeout(() => {
-        const oscillator3 = audioContext.createOscillator();
-        const gainNode3 = audioContext.createGain();
-        
-        oscillator3.connect(gainNode3);
-        gainNode3.connect(audioContext.destination);
-        
-        oscillator3.type = 'triangle';
-        oscillator3.frequency.setValueAtTime(800, audioContext.currentTime);
-        oscillator3.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.3);
-        
-        gainNode3.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode3.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.02);
-        gainNode3.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.4);
-        
-        oscillator3.start(audioContext.currentTime);
-        oscillator3.stop(audioContext.currentTime + 0.4);
-      }, 200);
+      // Paper money shuffling sound
+      const createPaperSound = (delay: number) => {
+        setTimeout(() => {
+          const bufferSize = 4096;
+          const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+          const output = buffer.getChannelData(0);
+          
+          for (let i = 0; i < bufferSize; i++) {
+            output[i] = (Math.random() * 2 - 1) * 0.1;
+          }
+          
+          const whiteNoise = audioContext.createBufferSource();
+          whiteNoise.buffer = buffer;
+          
+          const filter = audioContext.createBiquadFilter();
+          filter.type = 'highpass';
+          filter.frequency.setValueAtTime(800, audioContext.currentTime);
+          
+          const gainNode = audioContext.createGain();
+          gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+          gainNode.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.05);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+          
+          whiteNoise.connect(filter);
+          filter.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          whiteNoise.start(audioContext.currentTime);
+          whiteNoise.stop(audioContext.currentTime + 0.3);
+        }, delay);
+      };
+
+      // Victory chime
+      const createVictoryChime = (delay: number) => {
+        setTimeout(() => {
+          const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C major chord
+          
+          frequencies.forEach((freq, index) => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.05);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
+            
+            oscillator.start(audioContext.currentTime + index * 0.1);
+            oscillator.stop(audioContext.currentTime + 0.8);
+          });
+        }, delay);
+      };
+
+      // Orchestrate the complete money sound effect
+      createCashRegister(0);           // Immediate cash register
+      createCoinDrop(1800, 100);       // First coin
+      createCoinDrop(1600, 200);       // Second coin
+      createCoinDrop(1400, 280);       // Third coin
+      createCoinDrop(1200, 350);       // Fourth coin
+      createPaperSound(150);           // Paper money sound
+      createVictoryChime(400);         // Victory chime
+      
+      // Additional coin drops for richness
+      createCoinDrop(1000, 450);
+      createCoinDrop(1100, 520);
+      createCoinDrop(900, 580);
     };
 
-    playChaChing();
+    playMoneySound();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     createExplosion();
-    playCashRegisterSound();
+    playCashFlowMoneySound();
     
     if (!email) {
       toast({
