@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -341,8 +340,7 @@ const LoginForm = () => {
             
             <Button
               type="submit"
-              className="w-full h-12 hover:scale-105 transition-transform font-semibold text-white"
-              style={{ backgroundColor: '#2FBE55' }}
+              className="w-full h-12 hover:scale-105 transition-transform font-semibold text-white bg-netflix-red hover:bg-netflix-dark-red"
               disabled={isLoading}
             >
               {isLoading ? "Entrando..." : "Entrar"}
