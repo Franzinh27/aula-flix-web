@@ -242,21 +242,16 @@ const LoginForm = () => {
     <div className="min-h-screen flex items-center justify-center p-4 relative">
       <MatrixBackground />
       
-      {/* Explosion Animation */}
+      {/* Neo Glasses Animation */}
       {isExploding && (
-        <div className="fixed inset-0 pointer-events-none z-20">
-          {[...Array(20)].map((_, i) => (
-            <DollarSign
-              key={i}
-              className="absolute w-8 h-8 text-green-500 animate-explosion"
-              style={{
-                left: `${50 + (Math.random() - 0.5) * 20}%`,
-                top: `${50 + (Math.random() - 0.5) * 20}%`,
-                animationDelay: `${Math.random() * 0.5}s`,
-                animationDuration: '2s'
-              }}
+        <div className="fixed inset-0 pointer-events-none z-20 flex items-center justify-center">
+          <div className="animate-neo-glasses">
+            <img 
+              src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=400&q=80"
+              alt="Neo Matrix Glasses"
+              className="w-32 h-32 object-cover rounded-full border-4 border-green-500 shadow-2xl shadow-green-500/50"
             />
-          ))}
+          </div>
         </div>
       )}
       
@@ -399,18 +394,31 @@ const LoginForm = () => {
           }
         }
 
-        @keyframes explosion {
+        @keyframes neo-glasses {
           0% {
-            transform: translate(0, 0) scale(0) rotate(0deg);
-            opacity: 1;
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
+            filter: brightness(1) drop-shadow(0 0 0 #00FF00);
+          }
+          25% {
+            transform: scale(1.2) rotate(10deg);
+            opacity: 0.8;
+            filter: brightness(1.5) drop-shadow(0 0 20px #00FF00);
           }
           50% {
-            transform: translate(calc(var(--random-x, 0) * 200px), calc(var(--random-y, 0) * 200px)) scale(1.5) rotate(180deg);
-            opacity: 0.8;
+            transform: scale(1) rotate(-5deg);
+            opacity: 1;
+            filter: brightness(2) drop-shadow(0 0 40px #00FF00);
+          }
+          75% {
+            transform: scale(1.1) rotate(3deg);
+            opacity: 0.9;
+            filter: brightness(1.8) drop-shadow(0 0 30px #00FF00);
           }
           100% {
-            transform: translate(calc(var(--random-x, 0) * 400px), calc(var(--random-y, 0) * 400px)) scale(0) rotate(360deg);
+            transform: scale(0.8) rotate(0deg);
             opacity: 0;
+            filter: brightness(1) drop-shadow(0 0 0 #00FF00);
           }
         }
 
@@ -426,10 +434,8 @@ const LoginForm = () => {
           animation: float-3 3s ease-in-out infinite;
         }
 
-        .animate-explosion {
-          animation: explosion 2s ease-out forwards;
-          --random-x: ${Math.random() - 0.5};
-          --random-y: ${Math.random() - 0.5};
+        .animate-neo-glasses {
+          animation: neo-glasses 2s ease-out forwards;
         }
       `}</style>
     </div>
