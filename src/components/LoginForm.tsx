@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -69,6 +70,62 @@ const MatrixBackground = () => {
   );
 };
 
+const MatrixGlassesReflection = () => {
+  useEffect(() => {
+    const canvas = document.getElementById('glasses-reflection') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = 200;
+    canvas.height = 80;
+
+    const characters = "01ネオマトリックス";
+    const fontSize = 8;
+    const columns = canvas.width / fontSize;
+    const drops: number[] = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * -100;
+    }
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00FF00';
+      ctx.font = fontSize + 'px monospace';
+      ctx.shadowColor = '#00FF00';
+      ctx.shadowBlur = 3;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i] += 0.5;
+      }
+    };
+
+    const interval = setInterval(draw, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <canvas
+      id="glasses-reflection"
+      className="absolute inset-0 w-full h-full opacity-70"
+      style={{ mixBlendMode: 'multiply' }}
+    />
+  );
+};
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,7 +135,7 @@ const LoginForm = () => {
 
   const createExplosion = () => {
     setIsExploding(true);
-    setTimeout(() => setIsExploding(false), 2000);
+    setTimeout(() => setIsExploding(false), 3000);
   };
 
   const playCashFlowMoneySound = () => {
@@ -241,15 +298,20 @@ const LoginForm = () => {
     <div className="min-h-screen flex items-center justify-center p-4 relative">
       <MatrixBackground />
       
-      {/* Neo Glasses Animation */}
+      {/* Neo Glasses Animation with Matrix Reflection */}
       {isExploding && (
         <div className="fixed inset-0 pointer-events-none z-20 flex items-center justify-center">
-          <div className="animate-neo-glasses">
-            <img 
-              src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=400&q=80"
-              alt="Neo Matrix Glasses"
-              className="w-32 h-32 object-cover rounded-full border-4 border-green-500 shadow-2xl shadow-green-500/50"
-            />
+          <div className="animate-neo-glasses relative">
+            <div className="relative w-48 h-24 overflow-hidden rounded-lg">
+              <img 
+                src="/lovable-uploads/77fec1d8-47d6-47d3-ad24-cf257ee1335b.png"
+                alt="Neo Matrix Glasses"
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute inset-0">
+                <MatrixGlassesReflection />
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -398,23 +460,28 @@ const LoginForm = () => {
             opacity: 0;
             filter: brightness(1) drop-shadow(0 0 0 #00FF00);
           }
-          25% {
-            transform: scale(1.2) rotate(10deg);
-            opacity: 0.8;
-            filter: brightness(1.5) drop-shadow(0 0 20px #00FF00);
-          }
-          50% {
-            transform: scale(1) rotate(-5deg);
-            opacity: 1;
-            filter: brightness(2) drop-shadow(0 0 40px #00FF00);
-          }
-          75% {
-            transform: scale(1.1) rotate(3deg);
+          20% {
+            transform: scale(1.3) rotate(5deg);
             opacity: 0.9;
             filter: brightness(1.8) drop-shadow(0 0 30px #00FF00);
           }
+          40% {
+            transform: scale(1.1) rotate(-2deg);
+            opacity: 1;
+            filter: brightness(2.2) drop-shadow(0 0 50px #00FF00);
+          }
+          60% {
+            transform: scale(1.2) rotate(1deg);
+            opacity: 1;
+            filter: brightness(2) drop-shadow(0 0 40px #00FF00);
+          }
+          80% {
+            transform: scale(1.05) rotate(-1deg);
+            opacity: 0.8;
+            filter: brightness(1.5) drop-shadow(0 0 25px #00FF00);
+          }
           100% {
-            transform: scale(0.8) rotate(0deg);
+            transform: scale(0.9) rotate(0deg);
             opacity: 0;
             filter: brightness(1) drop-shadow(0 0 0 #00FF00);
           }
@@ -433,7 +500,7 @@ const LoginForm = () => {
         }
 
         .animate-neo-glasses {
-          animation: neo-glasses 2s ease-out forwards;
+          animation: neo-glasses 3s ease-out forwards;
         }
       `}</style>
     </div>
