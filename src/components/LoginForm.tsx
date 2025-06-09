@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -289,7 +290,7 @@ const LoginForm = () => {
               </div>
             </div>
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
-              CashFlow Mastery
+              Ca$hFlow Ma$tery
             </CardTitle>
           </div>
           <CardDescription className="text-black">
