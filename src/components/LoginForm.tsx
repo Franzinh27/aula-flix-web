@@ -289,9 +289,12 @@ const LoginForm = () => {
                 />
               </div>
             </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
-              Ca$hFlow Ma$tery
-            </CardTitle>
+            <div className="text-center">
+              <div className="text-3xl font-bold flex items-baseline">
+                <span className="cashflow-text">Ca$hFlow</span>
+                <span className="mastery-text ml-2">Mastery</span>
+              </div>
+            </div>
           </div>
           <CardDescription className="text-black">
             Acesse sua área de membros para continuar aprendendo
@@ -351,6 +354,42 @@ const LoginForm = () => {
       </Card>
 
       <style>{`
+        .cashflow-text {
+          background: linear-gradient(45deg, #FFD700, #FFA500, #FFFF00, #FFD700);
+          background-size: 400% 400%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradientShift 3s ease-in-out infinite;
+          font-weight: 800;
+          text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.3);
+          font-family: 'Inter', sans-serif;
+          letter-spacing: -0.5px;
+        }
+
+        .mastery-text {
+          background: linear-gradient(45deg, #8A2BE2, #9932CC, #BA55D3);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 400;
+          font-style: italic;
+          font-family: 'Inter', sans-serif;
+          opacity: 0.9;
+        }
+
+        @keyframes gradientShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
         @keyframes float-1 {
           0% {
             transform: translateY(40px) translateX(0px);
