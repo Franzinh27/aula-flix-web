@@ -255,7 +255,7 @@ const LoginForm = () => {
         </div>
       )}
       
-      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-white">
+      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-netflix-medium-gray">
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
@@ -296,7 +296,7 @@ const LoginForm = () => {
               </div>
             </div>
           </div>
-          <CardDescription className="text-black">
+          <CardDescription className="text-white">
             Acesse sua área de membros para continuar aprendendo
           </CardDescription>
         </CardHeader>
@@ -304,7 +304,7 @@ const LoginForm = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-black">
+              <Label htmlFor="email" className="text-sm font-medium text-white">
                 Email
               </Label>
               <Input
@@ -319,7 +319,7 @@ const LoginForm = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-black">
+              <Label htmlFor="password" className="text-sm font-medium text-white">
                 Senha
               </Label>
               <div className="relative">
