@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -5,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, DollarSign } from 'lucide-react';
 
 const MatrixBackground = () => {
   useEffect(() => {
@@ -256,10 +257,43 @@ const LoginForm = () => {
       
       <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-netflix-medium-gray">
         <CardHeader className="text-center space-y-4">
-          <div className="text-center">
-            <div className="text-3xl font-bold flex items-baseline justify-center">
-              <span className="cashflow-text">Ca$hFlow</span>
-              <span className="mastery-text ml-2">Ma$tery</span>
+          <div className="flex items-center justify-center space-x-2">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
+              <DollarSign className="w-6 h-6 animate-bounce z-10" style={{ color: '#2FBE55' }} />
+              
+              {/* Floating dollar signs animation */}
+              <div className="absolute inset-0 pointer-events-none">
+                <DollarSign 
+                  className="w-3 h-3 absolute animate-float-1 opacity-60" 
+                  style={{ 
+                    color: '#2FBE55',
+                    left: '10%',
+                    animationDelay: '0s'
+                  }} 
+                />
+                <DollarSign 
+                  className="w-2 h-2 absolute animate-float-2 opacity-40" 
+                  style={{ 
+                    color: '#2FBE55',
+                    right: '15%',
+                    animationDelay: '0.5s'
+                  }} 
+                />
+                <DollarSign 
+                  className="w-2.5 h-2.5 absolute animate-float-3 opacity-50" 
+                  style={{ 
+                    color: '#2FBE55',
+                    left: '60%',
+                    animationDelay: '1s'
+                  }} 
+                />
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold flex items-baseline">
+                <span className="cashflow-text">Ca$hFlow</span>
+                <span className="mastery-text ml-2">Mastery</span>
+              </div>
             </div>
           </div>
           <CardDescription className="text-white">
@@ -356,6 +390,48 @@ const LoginForm = () => {
           }
         }
 
+        @keyframes float-1 {
+          0% {
+            transform: translateY(40px) translateX(0px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateY(-40px) translateX(5px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes float-2 {
+          0% {
+            transform: translateY(40px) translateX(0px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.4;
+          }
+          100% {
+            transform: translateY(-40px) translateX(-3px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes float-3 {
+          0% {
+            transform: translateY(40px) translateX(0px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(-40px) translateX(2px);
+            opacity: 0;
+          }
+        }
+
         @keyframes neo-glasses {
           0% {
             transform: scale(0) rotate(0deg);
@@ -382,6 +458,18 @@ const LoginForm = () => {
             opacity: 0;
             filter: brightness(1) drop-shadow(0 0 0 #00FF00);
           }
+        }
+
+        .animate-float-1 {
+          animation: float-1 2s ease-in-out infinite;
+        }
+
+        .animate-float-2 {
+          animation: float-2 2.5s ease-in-out infinite;
+        }
+
+        .animate-float-3 {
+          animation: float-3 3s ease-in-out infinite;
         }
 
         .animate-neo-glasses {
