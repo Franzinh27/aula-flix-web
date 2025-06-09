@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -289,12 +288,8 @@ const LoginForm = () => {
                 />
               </div>
             </div>
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent flex items-center">
-              Ca
-              <DollarSign className="w-8 h-8 mx-1 animate-bounce text-green-500" />
-              hFlow Ma
-              <DollarSign className="w-8 h-8 mx-1 animate-bounce text-green-500" style={{ animationDelay: '0.2s' }} />
-              tery
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent">
+              CashFlow Mastery
             </CardTitle>
           </div>
           <CardDescription className="text-black">
