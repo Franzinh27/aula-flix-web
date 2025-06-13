@@ -290,9 +290,9 @@ const LoginForm = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold flex items-baseline">
+              <div className="text-3xl font-bold flex flex-col items-center">
                 <span className="cashflow-text">Ca$hFlow</span>
-                <span className="mastery-text ml-2">Mastery</span>
+                <span className="mastery-text">Mastery</span>
               </div>
             </div>
           </div>
