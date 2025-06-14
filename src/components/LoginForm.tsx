@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -255,7 +254,7 @@ const LoginForm = () => {
         </div>
       )}
       
-      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-netflix-medium-gray">
+      <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-netflix-medium-gray neon-card">
         <CardHeader className="text-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
@@ -379,6 +378,15 @@ const LoginForm = () => {
           opacity: 0.9;
         }
 
+        .neon-card {
+          border: 2px solid #15EE00;
+          box-shadow: 
+            0 0 10px #15EE00,
+            0 0 20px #15EE00,
+            0 0 30px #15EE00;
+          animation: greenNeonCardBorder 2s ease-in-out infinite;
+        }
+
         .neon-button {
           position: relative;
           border: 2px solid #15EE00;
@@ -403,6 +411,22 @@ const LoginForm = () => {
             inset 0 0 35px rgba(240, 0, 0, 0.2);
         }
 
+        @keyframes greenNeonCardBorder {
+          0%, 100% {
+            box-shadow: 
+              0 0 10px #15EE00,
+              0 0 20px #15EE00,
+              0 0 30px #15EE00;
+          }
+          50% {
+            box-shadow: 
+              0 0 15px #15EE00,
+              0 0 25px #15EE00,
+              0 0 35px #15EE00,
+              0 0 45px #15EE00;
+          }
+        }
+
         @keyframes greenNeonBorder {
           0%, 100% {
             box-shadow: 
@@ -422,18 +446,6 @@ const LoginForm = () => {
               inset 0 0 15px #F00000,
               inset 0 0 25px rgba(240, 0, 0, 0.4),
               inset 0 0 35px rgba(240, 0, 0, 0.2);
-          }
-        }
-
-        @keyframes gradientShift {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
           }
         }
 
