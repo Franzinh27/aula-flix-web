@@ -312,7 +312,7 @@ const LoginForm = () => {
                 placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 bg-netflix-dark-gray border-netflix-medium-gray focus:border-netflix-red transition-colors"
+                className="h-12 bg-netflix-dark-gray border-netflix-medium-gray focus:border-netflix-red transition-colors neon-input"
                 disabled={isLoading}
               />
             </div>
@@ -328,7 +328,7 @@ const LoginForm = () => {
                   placeholder="Digite sua senha"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-12 bg-netflix-dark-gray border-netflix-medium-gray focus:border-netflix-red transition-colors pr-12"
+                  className="h-12 bg-netflix-dark-gray border-netflix-medium-gray focus:border-netflix-red transition-colors pr-12 neon-input"
                   disabled={isLoading}
                 />
                 <button
@@ -533,6 +533,23 @@ const LoginForm = () => {
 
         .animate-neo-glasses {
           animation: neo-glasses 2s ease-out forwards;
+        }
+
+        .neon-input {
+          border: 2px solid #15EE00;
+          box-shadow: 
+            0 0 10px #15EE00,
+            0 0 20px #15EE00,
+            0 0 30px #15EE00;
+          animation: greenNeonInputBorder 2s ease-in-out infinite;
+        }
+
+        .neon-input:focus {
+          box-shadow: 
+            0 0 15px #15EE00,
+            0 0 25px #15EE00,
+            0 0 35px #15EE00,
+            0 0 45px #15EE00;
         }
       `}</style>
     </div>
