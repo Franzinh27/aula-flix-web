@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -380,29 +381,44 @@ const LoginForm = () => {
 
         .neon-button {
           position: relative;
+          border: 2px solid #15EE00;
           box-shadow: 
+            0 0 10px #15EE00,
+            0 0 20px #15EE00,
+            0 0 30px #15EE00,
             inset 0 0 10px #F00000,
             inset 0 0 20px rgba(240, 0, 0, 0.3),
             inset 0 0 30px rgba(240, 0, 0, 0.1);
-          animation: innerNeonPulse 2s ease-in-out infinite;
+          animation: greenNeonBorder 2s ease-in-out infinite;
         }
 
         .neon-button:hover {
           box-shadow: 
+            0 0 15px #15EE00,
+            0 0 25px #15EE00,
+            0 0 35px #15EE00,
+            0 0 45px #15EE00,
             inset 0 0 15px #F00000,
             inset 0 0 25px rgba(240, 0, 0, 0.4),
             inset 0 0 35px rgba(240, 0, 0, 0.2);
         }
 
-        @keyframes innerNeonPulse {
+        @keyframes greenNeonBorder {
           0%, 100% {
             box-shadow: 
+              0 0 10px #15EE00,
+              0 0 20px #15EE00,
+              0 0 30px #15EE00,
               inset 0 0 10px #F00000,
               inset 0 0 20px rgba(240, 0, 0, 0.3),
               inset 0 0 30px rgba(240, 0, 0, 0.1);
           }
           50% {
             box-shadow: 
+              0 0 15px #15EE00,
+              0 0 25px #15EE00,
+              0 0 35px #15EE00,
+              0 0 45px #15EE00,
               inset 0 0 15px #F00000,
               inset 0 0 25px rgba(240, 0, 0, 0.4),
               inset 0 0 35px rgba(240, 0, 0, 0.2);
