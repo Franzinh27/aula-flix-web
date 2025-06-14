@@ -343,7 +343,7 @@ const LoginForm = () => {
             
             <button
               type="submit"
-              className="w-full h-12 rounded-full font-semibold text-white transition-transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed neon-button"
+              className="w-full h-12 rounded-full font-semibold text-white transition-transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed neon-button pulsing-neon-button"
               style={{ backgroundColor: '#F00000', color: '#FFFFFF' }}
               disabled={isLoading}
             >
@@ -411,6 +411,10 @@ const LoginForm = () => {
             inset 0 0 35px rgba(240, 0, 0, 0.2);
         }
 
+        .pulsing-neon-button {
+          animation: greenNeonPulse 1.5s ease-in-out infinite;
+        }
+
         @keyframes greenNeonCardBorder {
           0%, 100% {
             box-shadow: 
@@ -446,6 +450,30 @@ const LoginForm = () => {
               inset 0 0 15px #F00000,
               inset 0 0 25px rgba(240, 0, 0, 0.4),
               inset 0 0 35px rgba(240, 0, 0, 0.2);
+          }
+        }
+
+        @keyframes greenNeonPulse {
+          0%, 100% {
+            box-shadow: 
+              0 0 10px #15EE00,
+              0 0 20px #15EE00,
+              0 0 30px #15EE00,
+              inset 0 0 10px #F00000,
+              inset 0 0 20px rgba(240, 0, 0, 0.3),
+              inset 0 0 30px rgba(240, 0, 0, 0.1);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 
+              0 0 20px #15EE00,
+              0 0 30px #15EE00,
+              0 0 40px #15EE00,
+              0 0 50px #15EE00,
+              inset 0 0 20px #F00000,
+              inset 0 0 30px rgba(240, 0, 0, 0.5),
+              inset 0 0 40px rgba(240, 0, 0, 0.3);
+            transform: scale(1.02);
           }
         }
 
@@ -550,6 +578,22 @@ const LoginForm = () => {
             0 0 25px #15EE00,
             0 0 35px #15EE00,
             0 0 45px #15EE00;
+        }
+
+        @keyframes greenNeonInputBorder {
+          0%, 100% {
+            box-shadow: 
+              0 0 10px #15EE00,
+              0 0 20px #15EE00,
+              0 0 30px #15EE00;
+          }
+          50% {
+            box-shadow: 
+              0 0 15px #15EE00,
+              0 0 25px #15EE00,
+              0 0 35px #15EE00,
+              0 0 45px #15EE00;
+          }
         }
       `}</style>
     </div>
