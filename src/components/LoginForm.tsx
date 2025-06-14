@@ -290,9 +290,9 @@ const LoginForm = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold flex items-baseline">
+              <div className="text-3xl font-bold flex flex-col items-center">
                 <span className="cashflow-text">Ca$hFlow</span>
-                <span className="mastery-text ml-2">Mastery</span>
+                <span className="mastery-text">Mastery</span>
               </div>
             </div>
           </div>
@@ -342,13 +342,14 @@ const LoginForm = () => {
               </div>
             </div>
             
-            <Button
+            <button
               type="submit"
-              className="w-full h-12 hover:scale-105 transition-transform font-semibold text-white bg-netflix-red hover:bg-netflix-dark-red"
+              className="w-full h-12 rounded-full font-semibold text-white transition-transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: '#F00000', color: '#FFFFFF' }}
               disabled={isLoading}
             >
               {isLoading ? "Entrando..." : "Entrar"}
-            </Button>
+            </button>
           </form>
         </CardContent>
       </Card>
