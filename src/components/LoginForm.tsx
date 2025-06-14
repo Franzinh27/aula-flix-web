@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
-import { Eye, EyeOff, DollarSign } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
 const MatrixBackground = () => {
   useEffect(() => {
@@ -255,17 +256,10 @@ const LoginForm = () => {
       
       <Card className="w-full max-w-md border-0 animate-scale-in relative z-10 bg-netflix-medium-gray">
         <CardHeader className="text-center space-y-4">
-          <div className="flex flex-col items-center justify-center space-y-2">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#000000' }}>
-              <DollarSign className="w-6 h-6 animate-bounce z-10" style={{ color: '#2FBE55' }} />
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">
-                <span className="cashflow-text">Ca$hFlow</span>
-              </div>
-              <div className="text-xl font-light">
-                <span className="mastery-text">Mastery</span>
-              </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold flex items-baseline justify-center">
+              <span className="cashflow-text">Ca$hFlow</span>
+              <span className="mastery-text ml-2">Ma$tery</span>
             </div>
           </div>
           <CardDescription className="text-white">
@@ -314,20 +308,13 @@ const LoginForm = () => {
               </div>
             </div>
             
-            <button
+            <Button
               type="submit"
-              className="w-full h-16 relative overflow-hidden rounded-full mirror-capsule-button group disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-12 hover:scale-105 transition-transform font-semibold text-white bg-netflix-red hover:bg-netflix-dark-red"
               disabled={isLoading}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-red-600 rounded-full"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-black/30 rounded-full"></div>
-              <div className="absolute top-2 left-4 right-4 h-3 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full blur-sm"></div>
-              <div className="relative z-10 flex items-center justify-center h-full">
-                <span className="text-white font-semibold text-lg tracking-wide">
-                  {isLoading ? "Entrando..." : "Entrar"}
-                </span>
-              </div>
-            </button>
+              {isLoading ? "Entrando..." : "Entrar"}
+            </Button>
           </form>
         </CardContent>
       </Card>
@@ -355,30 +342,6 @@ const LoginForm = () => {
           font-style: italic;
           font-family: 'Inter', sans-serif;
           opacity: 0.9;
-        }
-
-        .mirror-capsule-button {
-          box-shadow: 
-            0 8px 32px rgba(239, 68, 68, 0.4),
-            inset 0 2px 4px rgba(255, 255, 255, 0.3),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .mirror-capsule-button:hover:not(:disabled) {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 
-            0 12px 40px rgba(239, 68, 68, 0.6),
-            inset 0 2px 6px rgba(255, 255, 255, 0.4),
-            inset 0 -2px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .mirror-capsule-button:active:not(:disabled) {
-          transform: translateY(0) scale(0.98);
-          box-shadow: 
-            0 4px 16px rgba(239, 68, 68, 0.3),
-            inset 0 2px 4px rgba(255, 255, 255, 0.2),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes gradientShift {
